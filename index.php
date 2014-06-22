@@ -51,9 +51,9 @@ if (isset($_SESSION) && isset($_SESSION['fb_token']))
 	// validate the access_token to make sure it's still valid
 	try 
 	{
-    	if (!$session->validate())
-    	{
-	    	$session = null;
+    		if (!$session->validate())
+    		{
+	    		$session = null;
 		}
 	}
 	catch (Exception $e)
