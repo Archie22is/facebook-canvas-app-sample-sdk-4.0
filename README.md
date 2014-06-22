@@ -1,4 +1,4 @@
-Canvas facebook app Sample
+Facebook canvas app Sample
 ==========================================
 facebook sdk 4.0
 
