@@ -42,13 +42,13 @@ $helper = new FacebookCanvasLoginHelper();
 
 
 
-// see if a existing session exists
+// see if  $_SESSION exists
 if (isset($_SESSION) && isset($_SESSION['fb_token']))
 {
-	// create new session from saved access_token
+	// create new fb session from saved fb_token
 	$session = new FacebookSession($_SESSION['fb_token']);
 
-	// validate the access_token to make sure it's still valid
+	// validate the fb_token to make sure it's still valid
 	try 
 	{
     		if (!$session->validate())
@@ -64,10 +64,10 @@ if (isset($_SESSION) && isset($_SESSION['fb_token']))
 }
 else
 {
-	// no session exists
+	// no $_SESSION exists
 	try
 	{
-		// create session
+		// create fb session
 		$session = $helper->getSession();
 	}
 	catch(FacebookRequestException $ex)
@@ -88,7 +88,7 @@ else
 	// check if 1 of the 2 methods above set $session
 	if (isset($session))
 	{
-		// Lets save fb_token for later authentication through saved session
+		// Lets save fb_token for later authentication through saved $_SESSION
 		$_SESSION['fb_token'] = $session->getToken();
 
 		// Logged in
@@ -96,7 +96,7 @@ else
 		  $session, 'GET', '/me'
 		))->execute()->getGraphObject();
 
-		// Some data that we can get from facebook about user
+		// We can get some info about the user
 		$fb_location_name = $fb_me->getProperty('location')->getProperty('name');
 		$fb_email = $fb_me->getProperty('email');
 		$fb_uuid = $fb_me->getProperty('id');
