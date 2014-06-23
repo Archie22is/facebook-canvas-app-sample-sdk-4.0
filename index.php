@@ -84,7 +84,6 @@ else
 
 
 
-
 // check if 1 of the 2 methods above set $session
 if (isset($session))
 {
