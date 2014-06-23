@@ -85,28 +85,28 @@ else
 
 
 
-	// check if 1 of the 2 methods above set $session
-	if (isset($session))
-	{
-		// Lets save fb_token for later authentication through saved $_SESSION
-		$_SESSION['fb_token'] = $session->getToken();
+// check if 1 of the 2 methods above set $session
+if (isset($session))
+{
+	// Lets save fb_token for later authentication through saved $_SESSION
+	$_SESSION['fb_token'] = $session->getToken();
 
-		// Logged in
-		$fb_me = (new FacebookRequest(
-		  $session, 'GET', '/me'
-		))->execute()->getGraphObject();
+	// Logged in
+	$fb_me = (new FacebookRequest(
+	  $session, 'GET', '/me'
+	))->execute()->getGraphObject();
 
-		// We can get some info about the user
-		$fb_location_name = $fb_me->getProperty('location')->getProperty('name');
-		$fb_email = $fb_me->getProperty('email');
-		$fb_uuid = $fb_me->getProperty('id');
-	}
-	else
-	{
-		// We use javascript because of facebook bug https://developers.facebook.com/bugs/722275367815777
-		// Fix from here: http://stackoverflow.com/a/23685616/796443
-		// IF bug is fixed this line won't be needed, as app will ask for permissions onload without JS redirect.
-		$oauthJS = "window.top.location = 'https://www.facebook.com/dialog/oauth?client_id=1488670511365707&redirect_uri=https://apps.facebook.com/usaidgeorgia/&scope=user_location,email';";
-	}
+	// We can get some info about the user
+	$fb_location_name = $fb_me->getProperty('location')->getProperty('name');
+	$fb_email = $fb_me->getProperty('email');
+	$fb_uuid = $fb_me->getProperty('id');
+}
+else
+{
+	// We use javascript because of facebook bug https://developers.facebook.com/bugs/722275367815777
+	// Fix from here: http://stackoverflow.com/a/23685616/796443
+	// IF bug is fixed this line won't be needed, as app will ask for permissions onload without JS redirect.
+	$oauthJS = "window.top.location = 'https://www.facebook.com/dialog/oauth?client_id=1488670511365707&redirect_uri=https://apps.facebook.com/usaidgeorgia/&scope=user_location,email';";
+}
 
 ?>
