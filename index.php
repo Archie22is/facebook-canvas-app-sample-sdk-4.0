@@ -33,9 +33,13 @@ use Facebook\HttpClients\FacebookCurl;
 use Facebook\HttpClients\FacebookCurlHttpClient;
 
 
+$app_id = 'XXXX';
+$app_secret = 'XXXX';
+$app_namespace = 'XXXX';
+
 
 // Facebook APP keys
-FacebookSession::setDefaultApplication('XXX','XXXXX');
+FacebookSession::setDefaultApplication($app_id,$app_secret);
 
 // Helper for fb canvas authentication
 $helper = new FacebookCanvasLoginHelper();
@@ -51,10 +55,7 @@ if (isset($_SESSION) && isset($_SESSION['fb_token']))
 	// validate the fb_token to make sure it's still valid
 	try 
 	{
-    		if (!$session->validate())
-    		{
-	    		$session = null;
-		}
+    	    $session->validate();
 	}
 	catch (Exception $e)
 	{
@@ -73,12 +74,14 @@ else
 	catch(FacebookRequestException $ex)
 	{
 		// When Facebook returns an error
-		print_r($ex);
+		//print_r($ex);
+		$session = null;
 	}
 	catch(\Exception $ex)
 	{
 		// When validation fails or other local issues
-		print_r($ex);
+		//print_r($ex);
+		$session = null;
 	}
 }
 
@@ -102,10 +105,11 @@ if (isset($session))
 }
 else
 {
+	session_destroy();
 	// We use javascript because of facebook bug https://developers.facebook.com/bugs/722275367815777
 	// Fix from here: http://stackoverflow.com/a/23685616/796443
 	// IF bug is fixed this line won't be needed, as app will ask for permissions onload without JS redirect.
-	$oauthJS = "window.top.location = 'https://www.facebook.com/dialog/oauth?client_id=1488670511365707&redirect_uri=https://apps.facebook.com/usaidgeorgia/&scope=user_location,email';";
+	$oauthJS = "window.top.location = 'https://www.facebook.com/dialog/oauth?client_id=$app_id&redirect_uri=https://apps.facebook.com/$app_namespace/&scope=user_location,email';";
 }
 
 ?>
