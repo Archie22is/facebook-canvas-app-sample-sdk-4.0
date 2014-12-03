@@ -23,3 +23,14 @@ Sample code has:
 * ***user_location*** - Provides access to a person's current city
 
 This is just a minor portion of data you can obtain via API. For full list of possibilities read [official facebook documentation](https://developers.facebook.com/docs/facebook-login/permissions/v2.2).
+
+###### $app_id
+###### $app_secret
+###### $app_namespace
+
+These variables can be obained in the process of creating a new app in facebook development center.
+
+###### ssl
+
+You must provide https connection to your server, otherwise your app won't work.    
+Self signed certificate will not work and app will fail silently without any warning.
