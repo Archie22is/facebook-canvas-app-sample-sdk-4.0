@@ -11,7 +11,7 @@ $app_secret = 'XXXX';
 $app_namespace = 'XXXX';
 $app_scope = 'user_location,email';
 ```
-###### $app_scope
+##### $app_scope
 
 When a person logs into your app via Facebook Login you can access a subset of that person's data stored on Facebook. Permissions are how you ask someone if you can access that data.
 
@@ -24,13 +24,13 @@ Sample code has:
 
 This is just a minor portion of data you can obtain via API. For full list of possibilities read [official facebook documentation](https://developers.facebook.com/docs/facebook-login/permissions/v2.2).
 
-###### $app_id
-###### $app_secret
-###### $app_namespace
+##### $app_id
+##### $app_secret
+##### $app_namespace
 
 These variables can be obained in the process of creating a new app in facebook development center.
 
-###### ssl
+##### ssl
 
 You must provide https connection to your server, otherwise your app won't work.    
 Self signed certificate will not work and app will fail silently without any warning.
