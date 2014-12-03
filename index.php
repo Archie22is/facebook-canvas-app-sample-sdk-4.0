@@ -36,6 +36,7 @@ use Facebook\HttpClients\FacebookCurlHttpClient;
 $app_id = 'XXXX';
 $app_secret = 'XXXX';
 $app_namespace = 'XXXX';
+$app_scope = 'user_location,email';
 
 
 // Facebook APP keys
@@ -109,7 +110,7 @@ else
 	// We use javascript because of facebook bug https://developers.facebook.com/bugs/722275367815777
 	// Fix from here: http://stackoverflow.com/a/23685616/796443
 	// IF bug is fixed this line won't be needed, as app will ask for permissions onload without JS redirect.
-	$oauthJS = "window.top.location = 'https://www.facebook.com/dialog/oauth?client_id=$app_id&redirect_uri=https://apps.facebook.com/$app_namespace/&scope=user_location,email';";
+	$oauthJS = "window.top.location = 'https://www.facebook.com/dialog/oauth?client_id=$app_id&redirect_uri=https://apps.facebook.com/$app_namespace/&scope=$app_scope';";
 }
 
 ?>
